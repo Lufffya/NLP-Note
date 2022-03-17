@@ -23,6 +23,14 @@
     使用 Encoder 和 Decoder 结构进行训练，Encoder 接收训练数据，Decoder 输入和输出接收错位的标注数据。
 
     
+    
+  - 什么是梯度消失和梯度爆炸？如何解决？
+
+    梯度消失/爆炸都是模型在梯度下降中不稳定的表现
+
+    解决思路：尝试不用的激活函数，或者使用梯度裁剪，正则化，LayerNormaliation，残差等方法在不同的场景下解决
+
+    
 
 - #### 激活函数（Activation）
 
@@ -56,9 +64,9 @@
 
   - Layer Normailzation 和 Bacth Normailzation 的区别？
 
-    1，Layer Normailzation 是对不同维度的同一组 Feature 做 Normailzation；
+    1，Layer Normailzation 是对单个批次的不同特征做  Normailzation；
 
-    2，Bacth Normailzation 是对同一维度的不同 Feature 做 Normailzation。
+    2，Bacth Normailzation 是对一组批次里面相同的特征做 Normailzation。
 
     
 
@@ -113,3 +121,39 @@
   - Self-attention 和 Masked Self-attention 的区别？
 
     Self-attention 输出时考虑了所有的输入信息，而 Masked Self-attention 输出时只能考虑序列前面出现的输入信息。
+
+    
+
+- #### BERT(Bidirectional Encoder Representation form Transformers)
+
+  - BERT 的模型结构？
+
+    BERT 采用 Transformers Encoder 的模型架构。
+
+    
+
+  - BERT 预训练方法？
+
+    1，Masked Language Model(MLM) 采用15%概率用 mask token 随机的对输入的token进行替换，再在输出中预测被替换的token；
+
+    2，Next Sentence Prediction(NSP) 输入两个句子，BERT 预测两个句子是否属于上下文关系。
+
+    
+
+  - 为什么BERT 会有用？
+
+    因为 BERT 在预训练中得到了词关于上下文的向量表示，称为 Embedding。
+
+    
+
+- #### GPT(Generative Pre-Trained Transformer)
+
+  - GPT 的模型结构？
+
+    GPT 采用 Transformers Decoder 的模型架构。
+
+    
+
+  - GPT 预训练方法？
+
+    Next Token Prediction(NTP) 词级自回归预测完整的句子。
