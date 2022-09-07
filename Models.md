@@ -22,16 +22,25 @@
 
 
 
-
-
 ## Attention is all your need（Transformer）2017
 
 - #### 概念
 
   - Attention 机制|Attention 公式|Encoder 和 Decoder的区别
+  
+    
+  
+- #### Attention 的公式是什么？
 
+  - $$
+    Attention(Q,K,V)=Softmax(\frac{QK^T}{\sqrt{d_K}})V
+    $$
 
+- #### Attention 机制的原理是什么？
 
+  - 
+  
+    
 
 ## Bidirectional Encoder Representations from Transformers（BERT）2018
 
