@@ -36,6 +36,12 @@
     Attention(Q,K,V)=Softmax(\frac{QK^T}{\sqrt{d_K}})V
     $$
 
+- #### Attention 公式中除以根号DK的作用是什么？
+
+  - 根号DK是缩放因子，主要是将Attention QK的值做归一化，使得梯度保持相对稳定
+  
+    
+
 - #### Attention 机制的原理是什么？
 
   - 对序列中不同单词给予不同的权重，把注意力集中在一条句子中重要的部分
@@ -45,9 +51,10 @@
 - #### Attention 和 RNN 的区别？
 
   - Attention 解决了 RNN 中序列过长所导致梯度消失/爆炸以及信息丢失的问题，Attention 可以并行的将一个词和其他任何词做注意力计算，不受序列长度的影响
+  
   - Attention 序列没有前后位置关系的信息，所以一般在使用的过程中会加上额外的位置编码信息
-
-
+  
+    
 
 - #### Transformer 的模型结构？
 
@@ -65,21 +72,62 @@
 
     
 
-- #### Transformer 的模型结构？
+- #### Transformer Encoder 和 Decoder 有什么区别？
 
-  - gAttention 的出现解决了LSTM序列过长会丢失信息的问题，而且Attention可以并行计算，Attention模型结构主要计算某个词与其他所有词的Attention分数当作对于序列的权重，根据权重就可以计算出某个词和序列中的其他词的相关性，Attention层的每一个输出都是考虑了整个序列的输出。
+  - 唯一的区别在于 Decoder 中的 Attention block 中引入了一个 Cross Attention 的模块，和 self Attention 不同的是， Cross Attention 采用 MASK 机制，将 Decoder 输入作为 Q，从 Encoder 中抽取 K 和 W 做注意力计算
 
-- #### Transformer 的模型结构？
+    
 
-  - gg
+- #### Mulit-Head-Attention 有什么用？
+
+  - 将同一个序列映射在不用的向量空间中计算注意力分数，关注一组序列中不用维度的关联关系，最后再将这些信息concat起来，就是 Mulit-Head 的输出
+  
+    
 
 ## Bidirectional Encoder Representations from Transformers（BERT）2018
 
 - #### 概念
 
-  - 
+  - 输入|预训练|MASK 策略|对比 ALBERT
+  
+    
+  
+- #### BERT 的模型结构？
 
+  - BERT 采用 Transformers Encoder 的模型架构
+  
+  
+  
+- #### BERT 的输入有哪些？
 
+  - Token Embeddings，表示句子的 Token 向量输入
+
+  - Segment Embeddings，区分两个句子对的关系，在NSP任务中会用到
+
+  - Position Embeddings，标记每个序列的位置信息，因为 Attention 计算无法考虑序列顺序
+
+    
+
+- #### BERT 预训练任务是什么？
+
+  - MLM（Masked Language Model）随机从输入序列中遮盖一部分的单词，希望模型能正确预测被遮盖的单词
+
+  - NSP（Next Sentence Prediction）让模型预测两个句子是不是前后句关系
+
+    
+
+- #### BERT MASK的策略是什么？
+
+  - 在序列中随机MASK掉15%的Token，在15%中，有10%的几率会被替换成其他单词，10%则保持原单词不变，80%会被标记替换为[MASK]
+
+    
+  
+- #### ALBERT 相对于 BERT 有哪些不同？
+
+  - LABERT 是轻量级的 BERT 以及改进版，主要通过三种方法实现
+  - 因式分解（Factorized Embedding Parameterization）将 Embedding 的矩阵做因式分解，先降维再升维到和隐含层的的维度一至
+  - 权重共享（Cross-layer Parameter Sharing）
+  - Sentence Order Prediction（SOP）
 
 ## Generative Pre-Training（GPT）2018
 

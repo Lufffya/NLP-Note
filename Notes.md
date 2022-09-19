@@ -244,13 +244,13 @@ Elmo模型的提出，主要解决了针对word2Vec方法所表示的词向量�
 
  
 
-10，Transformer的Decoder 和Encoder有什么本质的区别？
 
-11，BERT的三个编码输入分别是什么？
 
-13，BERT的预训练的任务是什么？
 
-14，BERT的MASK采用的是什么策略？
+
+
+
+
 
 15，ALBERT相对BERT主要做了哪些优化？
 
